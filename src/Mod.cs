@@ -9,7 +9,7 @@ using MelonLoader;
 [assembly: MelonInfo(
     typeof(Mod),
     "DroneChanges",
-    "1.0.0",
+    "1.0.1",
     "Bread-Chan",
     "https://www.nexusmods.com/slimerancher2/mods/110"
 )]
@@ -27,11 +27,11 @@ public class Mod : MelonMod
         PreferenceManager.Init();
 
         var h = new HarmonyLib.Harmony("com.bread-chan.drone_changes");
+
         if (PreferenceManager._minimumEnergyLevelToggle!.Value)
             h.PatchAll(typeof(DroneStationGadgetModelGetCurrEnergyPatch));
         if (PreferenceManager._quickDepositGrabToggle!.Value)
             h.PatchAll(typeof(RanchDroneInitPatch));
-
         MelonLogger.Msg("Initialized.");
     }
 
